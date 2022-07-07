@@ -1,4 +1,4 @@
-package com.keremkaratas.todoapp.view
+package com.keremkaratas.todoapp.view.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

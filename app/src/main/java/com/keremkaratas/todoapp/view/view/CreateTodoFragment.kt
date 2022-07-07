@@ -1,6 +1,5 @@
-package com.keremkaratas.todoapp.view
+package com.keremkaratas.todoapp.view.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,14 +15,17 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.keremkaratas.todoapp.R
 import com.keremkaratas.todoapp.databinding.FragmentCreateTodoBinding
+import java.util.*
 
 
 class CreateTodoFragment : Fragment() {
     private var _binding: FragmentCreateTodoBinding? = null
     private val binding get() = _binding!!
     private val PICK_IMAGE_REQUEST = 71
+    lateinit var reference: StorageReference
     lateinit var launcher: ActivityResultLauncher<String>
     val TAG = "****"
     val database = Firebase.firestore
@@ -33,45 +35,42 @@ class CreateTodoFragment : Fragment() {
     ): View? {
         _binding = FragmentCreateTodoBinding.inflate(inflater, container, false)
         var view = binding.root
+        definition()
+        binding.buttonSelectImg.setOnClickListener {launcher.launch("image/*") }
+        return view
+    }
+    fun definition(){
         val firebaseStore = FirebaseStorage.getInstance()
         val storageReference = FirebaseStorage.getInstance().reference
         launcher = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) { uri ->
             binding.imageView.setImageURI(uri)
-            val reference = FirebaseStorage.getInstance().reference.child("image")
+            reference = FirebaseStorage.getInstance().reference.child("image${UUID.randomUUID()}")
             reference.putFile(uri!!).addOnSuccessListener {
+                addtoFirestore()
 
-                reference.downloadUrl.addOnSuccessListener { downloadurl ->
-
-                    var map = mapOf("uri" to downloadurl.toString())
-                    Log.e(TAG, downloadurl.toString())
-
-                    database.collection("users")
-                        .add(map)
-                        .addOnSuccessListener { documentReference ->
-                            Log.e(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-                            Toast.makeText(activity, "Başarılı", Toast.LENGTH_LONG).show()
-                        }
-                        .addOnFailureListener { e ->
-                            Log.e(TAG, "Error adding document", e)
-                            Toast.makeText(activity, "Başarısız", Toast.LENGTH_LONG).show()
-
-                        }
-                }
             }
         }
-
-        binding.buttonSelectImg.setOnClickListener { launcher.launch("image/*") }
-        return view
     }
+    fun addtoFirestore() {
 
-    private fun launchGallery() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
+        reference.downloadUrl.addOnSuccessListener { downloadUrl ->
 
+            var map = mapOf("photo_url" to downloadUrl.toString())
+            Log.e(TAG, downloadUrl.toString())
+
+            database.collection("users")
+                .add(map)
+                .addOnSuccessListener { documentReference ->
+                    Log.e(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                    Toast.makeText(activity, "Başarılı", Toast.LENGTH_LONG).show()
+                }
+                .addOnFailureListener { e ->
+                    Log.e(TAG, "Error adding document", e)
+                    Toast.makeText(activity, "Başarısız", Toast.LENGTH_LONG).show()
+
+                }
+        }
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.keremkaratas.todoapp.view
+package com.keremkaratas.todoapp.view.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
