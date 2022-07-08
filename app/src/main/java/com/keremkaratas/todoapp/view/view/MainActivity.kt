@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = FirebaseAuth.getInstance()
-        if (auth.currentUser != null) {
+        if (auth.currentUser == null) {
             val intent=Intent(applicationContext, SignUpActivity::class.java)
             startActivity(intent)
         }
