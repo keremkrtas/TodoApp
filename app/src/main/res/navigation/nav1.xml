@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createTodoFragment"
             app:destination="@id/createTodoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myTodosFragment"
+            app:destination="@id/myTodosFragment" />
     </fragment>
     <fragment
         android:id="@+id/createTodoFragment"
@@ -21,6 +24,15 @@
         tools:layout="@layout/fragment_create_todo" >
         <action
             android:id="@+id/action_createTodoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myTodosFragment"
+        android:name="com.keremkaratas.todoapp.view.MyTodosFragment"
+        android:label="fragment_my_todos"
+        tools:layout="@layout/fragment_my_todos" >
+        <action
+            android:id="@+id/action_myTodosFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

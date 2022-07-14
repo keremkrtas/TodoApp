@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.keremkaratas.todoapp.R
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -67,6 +69,7 @@ class CreateTodoFragment : Fragment() {
                 .addOnSuccessListener { documentReference ->
                     //   Log.e(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                     Toast.makeText(activity, "Başarılı", Toast.LENGTH_LONG).show()
+                    Navigation.findNavController(view!!).navigate(R.id.action_createTodoFragment_to_homeFragment)
                 }
                 .addOnFailureListener { e ->
                     Log.e(TAG, "Error adding document", e)

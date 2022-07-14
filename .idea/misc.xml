@@ -3,15 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1645" />
         <entry key="app/src/main/res/layout-w1240dp/activity_sign_in.xml" value="0.20448460508701471" />
         <entry key="app/src/main/res/layout-w936dp/activity_sign_in.xml" value="0.19023224043715847" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25226449275362317" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.25226449275362317" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25226449275362317" />
-        <entry key="app/src/main/res/layout/fragment_create_todo.xml" value="0.47216644287109377" />
+        <entry key="app/src/main/res/layout/fragment_create_todo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25226449275362317" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.14792299898682879" />
+        <entry key="app/src/main/res/layout/fragment_my_todos.xml" value="0.26222826086956524" />
+        <entry key="app/src/main/res/layout/my_todos_row.xml" value="0.3526570048309179" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1645" />
       </map>
     </option>
   </component>
